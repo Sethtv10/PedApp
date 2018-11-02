@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="80sp"
+                android:paddingRight="20dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circlebuttonless"
+                    android:text="-"
+                    android:textSize="60dp"
+                    android:textColor="@color/colorWhite"
+                    android:onClick="lessButton"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="45dp">
+
+
+                <EditText
+                    android:id="@+id/numberOfPlayers"
+                    android:layout_width="154dp"
+                    android:layout_height="154dp"
+                    android:background="@drawable/circle"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="2"
+                    android:textAlignment="center"
+                    android:textSize="70dp"
+                    android:editable="false"
+                    android:focusable="false"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="80sp"
+                android:paddingLeft="20dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circlebuttonplus"
+                    android:text="+"
+                    android:textSize="65dp"
+                    android:textColor="@color/colorWhite"
+                    android:onClick="plusButton"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/playerslayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20sp"
+                android:hint="Nombre de Jugador"
+               />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingTop="12dp"
+                android:hint="Nombre de Jugador"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

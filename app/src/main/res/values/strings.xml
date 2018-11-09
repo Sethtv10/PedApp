@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">PedApp</string>
+
+
+<string-array name="category_array">
+    <item>Leve Levis</item>
+    <item>Pre-Copa Maratonica</item>
+    <item>Pedon Sinaloense</item>
+    <item>Peda Astral</item>
+    <item>Flaming Hot</item>
+
+</string-array>
 </resources>

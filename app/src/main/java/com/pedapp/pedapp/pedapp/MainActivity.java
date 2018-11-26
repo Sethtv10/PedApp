@@ -1,10 +1,21 @@
 package com.pedapp.pedapp.pedapp;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.pedapp.pedapp.pedapp.Utilities.Utilities;
+
+import java.io.Console;
+import java.lang.reflect.Array;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "db_pedapp", null, 1);
+        SQLiteDatabase db = conn.getWritableDatabase();
+
+        db.execSQL("DELETE FROM Players");
+        db.close();
 
     }
 
@@ -28,9 +43,11 @@ public class MainActivity extends AppCompatActivity {
             et.setHint("Nombre de Jugador");
             et.setPadding(10,40,10,30);
             ll.addView(et);
-        players = players + 1;
-        EditText numberPlayers = (EditText) findViewById(R.id.numberOfPlayers);
-        numberPlayers.setText(String.valueOf(players));
+             players = players + 1;
+             EditText numberPlayers = (EditText) findViewById(R.id.numberOfPlayers);
+             numberPlayers.setText(String.valueOf(players));
+             et.setGravity(Gravity.CENTER);
+
 
     }
     public void lessButton(View view) {
@@ -45,5 +62,57 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickFierro(View view) {
+        String[] playersArray = new String[players];
 
+        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "db_pedapp", null, 1);
+
+        SQLiteDatabase db = conn.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        EditText edit = (EditText)findViewById(R.id.one);
+        String result = edit.getText().toString();
+        playersArray[0] = result;
+
+        values.put(Utilities.FIELD_ID,0);
+        values.put(Utilities.FIELD_NAME,result);
+        values.put(Utilities.FIELD_GENDER,"N");
+        Long res = db.insert(Utilities.TABLE_PLAYERS, Utilities.FIELD_ID, values);
+
+        Log.d( "Registry ID: " , String.valueOf(res));
+
+        edit = (EditText)findViewById(R.id.two);
+        result = edit.getText().toString();
+        playersArray[1] = result;
+
+
+        values.put(Utilities.FIELD_ID,1);
+        values.put(Utilities.FIELD_NAME,result);
+        values.put(Utilities.FIELD_GENDER,"N");
+        res = db.insert(Utilities.TABLE_PLAYERS, Utilities.FIELD_ID, values);
+
+        Log.d( "Registry ID: " , String.valueOf(res));
+
+        for (int i = 2; i < players ; i++){
+            edit = (EditText)findViewById(i);
+            result = edit.getText().toString();
+            playersArray[i] = result;
+            values.put(Utilities.FIELD_ID,i);
+            values.put(Utilities.FIELD_NAME,result);
+            values.put(Utilities.FIELD_GENDER,"N");
+            res = db.insert(Utilities.TABLE_PLAYERS, Utilities.FIELD_ID, values);
+
+
+            Log.d( "Registry ID: " , String.valueOf(res));
+        }
+
+        db.close();
+
+        Intent intent = new Intent(this ,CategorySelector.class);
+        startActivity(intent);
+
+
+
+    }
 }

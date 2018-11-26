@@ -1,52 +1,63 @@
 package com.pedapp.pedapp.pedapp;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.pedapp.pedapp.pedapp.Utilities.Utilities;
 
-public class ChallengesRegistrationActivity extends AppCompatActivity{
+public class ChallengesRegistrationActivity extends DialogFragment {
 
-    EditText /*fieldID,*/ fieldCHALLENGE,fieldCATEGORY;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenges_registration);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        //SE CAPTURA LA INFORMACION DE LOS CAMPOS DE FORMULARIO
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View inflator = inflater.inflate(R.layout.fragment_new_challenge, null);
 
-        //fieldID = (EditText) findViewById(R.id.fieldID);
-        fieldCHALLENGE = (EditText) findViewById(R.id.fieldCHALLENGE);
-        fieldCATEGORY = (EditText) findViewById(R.id.fieldCATEGORY);
+        final EditText edit = (EditText) inflator.findViewById(R.id.newChallenge);
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflator)
+                // Add action buttons
+                .setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
 
 
-    }
-    public void onClick(View view){
-        //ALMACENA LOS RETOS EN LA BASE DE DATOS
-        registerChallenges();
-    }
+                        String result = edit.getText().toString();
+                        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(getContext(), "db_pedapp", null, 1);
 
-    private void registerChallenges() {
-        //ABRIMOS INICIALMENTE LA CONEXION PARA PODER ESCRIBIR
-        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "db_pedapp", null, 1);
-        SQLiteDatabase db = conn.getWritableDatabase();
+                        SQLiteDatabase db = conn.getWritableDatabase();
 
-        //SIRVE COMO HAASH TABLE
-        ContentValues values = new ContentValues();
+                        ContentValues values = new ContentValues();
 
-        //values.put(Utilities.FIELD_ID, fieldID.getText().toString());
-        values.put(Utilities.FIELD_CHALLENGE, fieldCHALLENGE.getText().toString());
-        values.put(Utilities.FIELD_CATEGORY, fieldCATEGORY.getText().toString());
+                        values.put(Utilities.FIELD_CATEGORY,0);
+                        values.put(Utilities.FIELD_CHALLENGE,result);
+                        values.put(Utilities.FIELD_RESPOND,"TU LO PEDISTE.... TOMAS!");
+                        values.put(Utilities.FIELD_FROMUSER,1);
+                        Long res = db.insert(Utilities.TABLE_CHALLENGE, Utilities.FIELD_CHALLENGE, values);
 
-        //INSERTA LA INFORMACION EN LA BASE DE DATOS
-        Long idResultante = db.insert(Utilities.TABLE_CHALLENGE, Utilities.FIELD_CHALLENGE, values);
-
-        Toast.makeText(getApplicationContext(),"Registry ID: " +idResultante, Toast.LENGTH_SHORT).show();
+                        Log.d( "Registry ID: " , String.valueOf(res));
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        return builder.create();
     }
 }

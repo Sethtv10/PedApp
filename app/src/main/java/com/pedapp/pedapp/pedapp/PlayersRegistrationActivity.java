@@ -19,21 +19,13 @@ public class PlayersRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenges_registration);
 
-        //SE CAPTURA LA INFORMACION DE LOS CAMPOS DE FORMULARIO
-
-        //fieldID = (EditText) findViewById(R.id.fieldID);
-        fieldCHALLENGE = (EditText) findViewById(R.id.fieldCHALLENGE);
-        fieldCATEGORY = (EditText) findViewById(R.id.fieldCATEGORY);
 
 
     }
-    public void onClick(View view){
-        //ALMACENA LOS RETOS EN LA BASE DE DATOS
-        registerChallenges();
-    }
+
 
     private void registerChallenges() {
-        //ABRIMOS INICIALMENTE LA CONEXION PARA PODER ESCRIBIR
+   /*     //ABRIMOS INICIALMENTE LA CONEXION PARA PODER ESCRIBIR
         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "db_pedapp", null, 1);
         SQLiteDatabase db = conn.getWritableDatabase();
 
@@ -47,6 +39,6 @@ public class PlayersRegistrationActivity extends AppCompatActivity {
         //INSERTA LA INFORMACION EN LA BASE DE DATOS
         Long idResultante = db.insert(Utilities.TABLE_CHALLENGE, Utilities.FIELD_CHALLENGE, values);
 
-        Toast.makeText(getApplicationContext(),"Registry ID: " +idResultante, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Registry ID: " +idResultante, Toast.LENGTH_SHORT).show(); */
     }
 }

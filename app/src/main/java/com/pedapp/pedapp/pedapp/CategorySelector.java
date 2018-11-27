@@ -20,7 +20,7 @@ public class CategorySelector extends AppCompatActivity {
     public void leve(View view) {
 
         Intent i = new Intent(getBaseContext(), Challenges.class);
-        i.putExtra("Category", "Leve");
+        i.putExtra("Category", "1");
         startActivity(i);
 
     }
@@ -28,7 +28,7 @@ public class CategorySelector extends AppCompatActivity {
     public void precopa(View view) {
 
         Intent i = new Intent(getBaseContext(), Challenges.class);
-        i.putExtra("Category", "Precopa");
+        i.putExtra("Category", "2");
         startActivity(i);
 
     }
@@ -36,7 +36,7 @@ public class CategorySelector extends AppCompatActivity {
     public void sinaloense(View view) {
 
         Intent i = new Intent(getBaseContext(), Challenges.class);
-        i.putExtra("Category", "Sinaloense");
+        i.putExtra("Category", "3");
         startActivity(i);
 
     }
@@ -44,7 +44,7 @@ public class CategorySelector extends AppCompatActivity {
     public void astral(View view) {
 
         Intent i = new Intent(getBaseContext(), Challenges.class);
-        i.putExtra("Category", "Astral");
+        i.putExtra("Category", "4");
         startActivity(i);
 
     }
@@ -52,7 +52,7 @@ public class CategorySelector extends AppCompatActivity {
     public void hot(View view) {
 
         Intent i = new Intent(getBaseContext(), Challenges.class);
-        i.putExtra("Category", "Hot");
+        i.putExtra("Category", "5");
         startActivity(i);
 
     }

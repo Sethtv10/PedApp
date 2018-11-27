@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:focusableInTouchMode="true">
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingTop="80sp"
-                android:paddingRight="20dp">
+                android:paddingRight="10dp">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingTop="80sp"
-                android:paddingLeft="20dp">
+                android:paddingLeft="10dp">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -104,10 +105,11 @@
             android:layout_height="match_parent"
             android:text="¡Fierro!"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/buttonfierro"
             android:textColor="@color/colorWhite"
-            android:onClick="onClickFierro"/>
+            android:onClick="onClickFierro"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 </ScrollView>

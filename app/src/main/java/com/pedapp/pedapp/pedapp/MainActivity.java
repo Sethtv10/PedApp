@@ -1,10 +1,16 @@
 package com.pedapp.pedapp.pedapp;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -52,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void lessButton(View view) {
         if (players > 2) {
+
             players = players - 1;
             LinearLayout ll = (LinearLayout) findViewById(R.id.playerslayout);
             EditText editText = (EditText) findViewById(players);
@@ -68,11 +75,26 @@ public class MainActivity extends AppCompatActivity {
         ConexionSQLiteHelper conn = new ConexionSQLiteHelper(this, "db_pedapp", null, 1);
 
         SQLiteDatabase db = conn.getWritableDatabase();
+        db.execSQL("DELETE FROM Players");
 
         ContentValues values = new ContentValues();
 
         EditText edit = (EditText)findViewById(R.id.one);
         String result = edit.getText().toString();
+        if(result.equals("")){
+            db.execSQL("DELETE FROM Players");
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+
+            alertDialog.setMessage("¡Llene todos los nombres Compa!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "¡Jalo!",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            return;
+        }
         playersArray[0] = result;
 
         values.put(Utilities.FIELD_ID,0);
@@ -84,6 +106,20 @@ public class MainActivity extends AppCompatActivity {
 
         edit = (EditText)findViewById(R.id.two);
         result = edit.getText().toString();
+        if(result.equals("")){
+            db.execSQL("DELETE FROM Players");
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+
+            alertDialog.setMessage("¡Llene todos los nombres Compa!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "¡Jalo!",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+            return;
+        }
         playersArray[1] = result;
 
 
@@ -97,6 +133,20 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 2; i < players ; i++){
             edit = (EditText)findViewById(i);
             result = edit.getText().toString();
+            if(result.equals("")){
+                db.execSQL("DELETE FROM Players");
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+
+                alertDialog.setMessage("¡Llene todos los nombres Compa!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "¡Jalo!",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                return;
+            }
             playersArray[i] = result;
             values.put(Utilities.FIELD_ID,i);
             values.put(Utilities.FIELD_NAME,result);

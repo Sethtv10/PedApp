@@ -44,10 +44,10 @@ public class ChallengesRegistrationActivity extends DialogFragment {
 
                         ContentValues values = new ContentValues();
 
-                        values.put(Utilities.FIELD_CATEGORY,0);
+                        values.put(Utilities.FIELD_CATEGORY,Challenges.args[0]);
                         values.put(Utilities.FIELD_CHALLENGE,result);
                         values.put(Utilities.FIELD_RESPOND,"TU LO PEDISTE.... TOMAS!");
-                        values.put(Utilities.FIELD_FROMUSER,1);
+                        values.put(Utilities.FIELD_FROMUSER,0);
                         Long res = db.insert(Utilities.TABLE_CHALLENGE, Utilities.FIELD_CHALLENGE, values);
 
                         Log.d( "Registry ID: " , String.valueOf(res));
